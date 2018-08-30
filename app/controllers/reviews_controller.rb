@@ -12,12 +12,12 @@ class ReviewsController < OpenReadController
 
   # GET /reviews/1
   def show
-    render json: Example.find(params[:id]
+    render json: Example.find(params[:id])
   end
 
   # POST /reviews
   def create
-    @review = Review.new(review_params)
+    @review = current_user.reviews.build(review_params)
 
     if @review.save
       render json: @review, status: :created, location: @review
