@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[show update destroy]
+class ReviewsController < OpenReadController
+  before_action :set_review, only: %i[update destroy]
 
   # GET /reviews
   def index
@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1
   def show
-    render json: @review
+    render json: Example.find(params[:id]
   end
 
   # POST /reviews
@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_review
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
