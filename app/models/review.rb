@@ -2,5 +2,9 @@
 
 class Review < ApplicationRecord
   belongs_to :user
-  validates :topic, :article, :star, :user, presence: true
+  validates :article, :star, :user, presence: true
+  validates :topic,
+            presence: true,
+            format: { with: /\A[a-zA-Z0-9]+\Z/ }
+
 end
