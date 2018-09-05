@@ -5,7 +5,11 @@ class ReviewsController < OpenReadController
 
   # GET /reviews
   def index
-    @reviews = Review.all
+    if params[:user_id]
+      @reviews = current_user.reviews.all
+    else
+      @reviews = Review.all
+    end
 
     render json: @reviews
   end

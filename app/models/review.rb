@@ -6,5 +6,6 @@ class Review < ApplicationRecord
   validates :topic,
             presence: true,
             format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  validates :star, inclusion: 0..5
 
 end
